@@ -13,4 +13,4 @@ parse_database_url() {
   fi
 }
 
-parse_database_url "${DATABASE_URL}"
+parse_database_url "${DATABASE_URL:-}"
