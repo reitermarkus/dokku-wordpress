@@ -35,8 +35,6 @@ COPY pre-entrypoint.sh /usr/local/bin/
 RUN sed -i '/exec "\$@"/i   \\source /usr/local/bin/entrypoint.sh "$@"' "$(which docker-entrypoint.sh)"
 COPY entrypoint.sh /usr/local/bin/
 
-COPY CHECKS /app/
-
 RUN rm -r /usr/src/wordpress/wp-content/themes/twentyfifteen   \
  && rm -r /usr/src/wordpress/wp-content/themes/twentysixteen   \
  && rm -r /usr/src/wordpress/wp-content/themes/twentyseventeen \
