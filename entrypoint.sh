@@ -4,10 +4,13 @@ wp() {
   su -s /bin/bash -m www-data -c -- 'wp "$@"' -- -- "$@"
 }
 
-if [ -z "${WORDPRESS_HOME_URL:=${WORDPRESS_SITE_URL:-}}" ] && [ -z "${WORDPRESS_SITE_URL:=${WORDPRESS_HOME_URL:-}}" ]; then
+if [ -z "${WORDPRESS_HOME_URL:-}" ] && [ -z "${WORDPRESS_SITE_URL:-}" ]; then
   echo 'At least one of WORDPRESS_HOME_URL or WORDPRESS_SITE_URL must be set.' &>2
   exit 1
 fi
+
+: ${WORDPRESS_HOME_URL:=${WORDPRESS_SITE_URL:-}}
+: ${WORDPRESS_SITE_URL:=${WORDPRESS_HOME_URL:-}}
 
 export WORDPRESS_HOME_URL
 export WORDPRESS_SITE_URL
