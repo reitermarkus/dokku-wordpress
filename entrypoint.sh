@@ -36,7 +36,7 @@ if [ ${WORDPRESS_OLD_HOME_URL:="$(wp option get home)"} != "$WORDPRESS_HOME_URL"
   wp search-replace "$WORDPRESS_OLD_HOME_URL" "$WORDPRESS_HOME_URL" --skip-columns=guid --precise
 fi
 
-if [ -z "$WORDPRESS_THEME" ]; then
+if [ -z "${WORDPRESS_THEME:-}" ]; then
   echo 'WORDPRESS_THEME must be set.' &>2
   exit 1
 fi
