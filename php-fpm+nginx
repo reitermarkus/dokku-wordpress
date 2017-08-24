@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+
+php-fpm &
+nginx &
+
+exit_code=0
+wait -n || exit_code=$?
+[[ $exit_code -eq 127 ]]
