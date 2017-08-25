@@ -32,6 +32,7 @@ if [ "$(wp option get siteurl)" != "$WORDPRESS_SITE_URL" ]; then
 fi
 
 if [ ${WORDPRESS_OLD_HOME_URL:="$(wp option get home)"} != "$WORDPRESS_HOME_URL" ]; then
+  echo "Replacing '$WORDPRESS_OLD_HOME_URL' with '$WORDPRESS_HOME_URL'."
   wp option update home "$WORDPRESS_HOME_URL"
   wp search-replace "$WORDPRESS_OLD_HOME_URL" "$WORDPRESS_HOME_URL" --skip-columns=guid --precise
 fi
