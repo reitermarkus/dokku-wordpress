@@ -44,8 +44,8 @@ RUN ln -sf /dev/stderr /var/log/nginx/error.log
 RUN echo 'cgi.fix_pathinfo=0' > /usr/local/etc/php/conf.d/cgi.ini
 
 RUN mkdir /run/nginx
-
 COPY wordpress.nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80
 
 RUN sed -i -E "/^http \{$/i \\include modules/*.conf; \\" /etc/nginx/nginx.conf
 RUN sed -i -E "/^http \{$/a \\    include conf.d/*.conf; \\" /etc/nginx/nginx.conf
