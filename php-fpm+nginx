@@ -3,7 +3,7 @@
 set -e
 
 php-fpm &
-nginx &
+nginx -g 'daemon off;' &
 
 exit_code=0
 wait -n || exit_code=$?
