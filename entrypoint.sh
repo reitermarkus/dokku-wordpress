@@ -61,9 +61,10 @@ if [[ -n "${WORDPRESS_LANGUAGES:-}" ]]; then
       wp language core list --status=active;
     } | grep -q -wo "$language" || wp language core install "$language"
   done
+fi
 
-  wp language core list --status=active | grep -q -wo "$WORDPRESS_LANGUAGE" ||
-    wp language core activate "$WORDPRESS_LANGUAGE"
+if [[ -n "${WORDPRESS_LANGUAGE:-}" ]]; then
+  wp site switch-language "$WORDPRESS_LANGUAGE"
 fi
 
 wp language core update
