@@ -16,7 +16,7 @@ export WORDPRESS_HOME_URL
 export WORDPRESS_SITE_URL
 
 if ! wp core is-installed; then
-  if [[ -z "$WORDPRESS_SITE_TITLE" ]]; then
+  if [[ -z "${WORDPRESS_SITE_TITLE:-}" ]]; then
     echo 'WORDPRESS_SITE_TITLE must be set.' >&2
     exit 1
   fi
@@ -51,7 +51,7 @@ fi
 
 IFS=',' languages=(${WORDPRESS_LANGUAGES:=})
 
-if [[ -n "$WORDPRESS_LANGUAGES" ]]; then
+if [[ -n "${WORDPRESS_LANGUAGES:-}" ]]; then
   export WORDPRESS_LANGUAGE="${languages[0]}"
   export WORDPRESS_LANGUAGES
 
