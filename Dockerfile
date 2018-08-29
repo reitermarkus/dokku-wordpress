@@ -69,3 +69,6 @@ RUN rm -r /usr/src/wordpress/wp-content/themes/twentyfifteen   \
  && rm -r /usr/src/wordpress/wp-content/plugins/akismet        \
  && rm    /usr/src/wordpress/wp-content/plugins/hello.php \
  && sed -i 's/\[ "$(ls -A)" \]/false/' "$(which docker-entrypoint.sh)"
+
+RUN sed -i 's/www-data:x:82:/www-data:x:1000:/' /etc/group
+RUN sed -i 's/www-data:x:82:82:/www-data:x:1000:1000:/' /etc/passwd
