@@ -32,7 +32,7 @@ RUN sed -i "s|\[ \"\$1\" = 'php-fpm' \]|[ \"\$1\" = 'php-fpm+nginx' ]|" "$(which
 
 CMD ["php-fpm+nginx"]
 
-RUN sed -i '/haveConfig=$/i \\source /usr/local/bin/pre-entrypoint.sh'  "$(which docker-entrypoint.sh)"
+RUN sed -i '/wpEnvs=/i \\        source /usr/local/bin/pre-entrypoint.sh'  "$(which docker-entrypoint.sh)"
 COPY pre-entrypoint.sh /usr/local/bin/
 
 RUN sed -i "/# now that we're definitely done/i   \\  source /usr/local/bin/entrypoint.sh\\ \n" "$(which docker-entrypoint.sh)"
