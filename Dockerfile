@@ -28,7 +28,7 @@ RUN sed -i -E "/^http \{$/a \\    include conf.d/*.conf; \\" /etc/nginx/nginx.co
 COPY php-fpm+nginx /usr/local/bin/php-fpm+nginx
 RUN chmod +x /usr/local/bin/php-fpm+nginx
 
-RUN sed -i 's|\[ "$1" == php-fpm \]|[ "$1" == php-fpm+nginx ]|' "$(which docker-entrypoint.sh)"
+RUN sed -i "s|\[ \"\$1\" = 'php-fpm' \]|[ \"\$1\" = 'php-fpm+nginx' ]|" "$(which docker-entrypoint.sh)"
 
 CMD ["php-fpm+nginx"]
 
