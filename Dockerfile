@@ -35,7 +35,7 @@ CMD ["php-fpm+nginx"]
 RUN sed -i '/wpEnvs=/i \\        source /usr/local/bin/pre-entrypoint.sh'  "$(which docker-entrypoint.sh)"
 COPY pre-entrypoint.sh /usr/local/bin/
 
-RUN sed -i "/# now that we're definitely done/i   \\  source /usr/local/bin/entrypoint.sh\\ \n" "$(which docker-entrypoint.sh)"
+RUN sed -i '/exec/i \\source /usr/local/bin/entrypoint.sh'  "$(which docker-entrypoint.sh)"
 COPY entrypoint.sh /usr/local/bin/
 
 RUN rm -r /usr/src/wordpress/wp-content/themes/twenty*   \
