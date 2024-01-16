@@ -2,6 +2,9 @@ FROM wordpress:cli-php8.3 as cli
 
 FROM wordpress:6.4.2-php8.3-fpm-alpine
 
+WORKDIR /usr/src/wordpress
+RUN cp -s wp-config-docker.php wp-config.php
+
 # Install `wp-cli` and its dependencies.
 COPY --from=cli /usr/local/bin/wp /usr/local/bin/wp
 RUN apk add --no-cache \
