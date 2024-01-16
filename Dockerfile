@@ -5,15 +5,14 @@ FROM wordpress:6.4.2-php8.3-fpm-alpine
 # Install `wp-cli` and its dependencies.
 COPY --from=cli /usr/local/bin/wp /usr/local/bin/wp
 RUN apk add --no-cache \
-    less=~643 \
-    mysql-client=~10.11.5 \
+    less~=643 \
+    mysql-client~=10.11.5 \
  && wp --allow-root --version
 
-RUN apk add --no-cache nginx=~1.24.0 \
+RUN apk add --no-cache nginx~=1.24.0 \
  && ln -sf /dev/stdout /var/log/nginx/access.log \
  && ln -sf /dev/stderr /var/log/nginx/error.log \
  && echo 'cgi.fix_pathinfo=0' > /usr/local/etc/php/conf.d/cgi.ini \
- && mkdir /run/nginx \
  && sed -i -E "/^http \{$/i \\include modules/*.conf; \\" /etc/nginx/nginx.conf \
  && sed -i -E "/^http \{$/a \\    include conf.d/*.conf; \\" /etc/nginx/nginx.conf
 COPY wordpress.nginx.conf /etc/nginx/conf.d/default.conf
