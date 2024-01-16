@@ -11,7 +11,7 @@ COPY --from=cli /usr/local/bin/wp /usr/local/bin/wp
 
 RUN wp --allow-root --version
 
-RUN apk add --no-cache nginx
+RUN apk add --no-cache nginx=~1.24.0
 
 RUN ln -sf /dev/stdout /var/log/nginx/access.log
 RUN ln -sf /dev/stderr /var/log/nginx/error.log
