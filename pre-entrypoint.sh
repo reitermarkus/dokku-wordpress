@@ -6,8 +6,13 @@ parse_database_url() {
     local username_password="${url_without_sheme%%@*}"
     local host_name="${url_without_sheme##*@}"
 
-    export WORDPRESS_DB_USER="${username_password%%:*}"
-    export WORDPRESS_DB_PASSWORD="${username_password##*:}"
+    if [[ "${username_password}" =~ .*:.* ]]; then
+      export WORDPRESS_DB_USER="${username_password%%:*}"
+      export WORDPRESS_DB_PASSWORD="${username_password##*:}"
+    else
+      export WORDPRESS_DB_USER="${username_password%%:*}"
+      export WORDPRESS_DB_PASSWORD=''
+    fi
     export WORDPRESS_DB_HOST="${host_name%/*}"
     export WORDPRESS_DB_NAME="${host_name##*/}"
   fi
