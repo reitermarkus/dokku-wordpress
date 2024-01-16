@@ -9,8 +9,8 @@ if [[ -z "${WORDPRESS_HOME_URL:-}" ]] && [[ -z "${WORDPRESS_SITE_URL:-}" ]]; the
   exit 1
 fi
 
-: ${WORDPRESS_HOME_URL:=${WORDPRESS_SITE_URL:-}}
-: ${WORDPRESS_SITE_URL:=${WORDPRESS_HOME_URL:-}}
+: "${WORDPRESS_HOME_URL:=${WORDPRESS_SITE_URL:-}}"
+: "${WORDPRESS_SITE_URL:=${WORDPRESS_HOME_URL:-}}"
 
 export WORDPRESS_HOME_URL
 export WORDPRESS_SITE_URL
@@ -49,13 +49,13 @@ if [[ -n "${WORDPRESS_LANGUAGE:-}" ]]; then
   WORDPRESS_LANGUAGES="$WORDPRESS_LANGUAGE${WORDPRESS_LANGUAGES+",$WORDPRESS_LANGUAGES"}"
 fi
 
-IFS=',' languages=(${WORDPRESS_LANGUAGES:=})
+IFS=',' read -a languages <<< "${WORDPRESS_LANGUAGES:=}"
 
 if [[ -n "${WORDPRESS_LANGUAGES:-}" ]]; then
   export WORDPRESS_LANGUAGE="${languages[0]}"
   export WORDPRESS_LANGUAGES
 
-  for language in ${languages[@]}; do
+  for language in "${languages[@]}"; do
     {
       wp language core list --status=installed 2>/dev/null;
       wp language core list --status=active 2>/dev/null;
