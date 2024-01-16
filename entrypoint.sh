@@ -49,7 +49,7 @@ if [[ -n "${WORDPRESS_LANGUAGE:-}" ]]; then
   WORDPRESS_LANGUAGES="$WORDPRESS_LANGUAGE${WORDPRESS_LANGUAGES+",$WORDPRESS_LANGUAGES"}"
 fi
 
-IFS=',' read -a languages <<< "${WORDPRESS_LANGUAGES:=}"
+IFS=',' read -r -a languages <<< "${WORDPRESS_LANGUAGES:=}"
 
 if [[ -n "${WORDPRESS_LANGUAGES:-}" ]]; then
   export WORDPRESS_LANGUAGE="${languages[0]}"
