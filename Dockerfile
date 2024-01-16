@@ -4,21 +4,18 @@ FROM wordpress:6.4.2-php8.3-fpm-alpine
 
 # install wp-cli dependencies
 RUN apk add --no-cache \
-    less \
-    mysql-client
+    less=~643 \
+    mysql-client=~10.11.5
 
 COPY --from=cli /usr/local/bin/wp /usr/local/bin/wp
 
 RUN wp --allow-root --version
 
-RUN apk add --no-cache nginx=~1.24.0
-
-RUN ln -sf /dev/stdout /var/log/nginx/access.log
-RUN ln -sf /dev/stderr /var/log/nginx/error.log
-
-RUN echo 'cgi.fix_pathinfo=0' > /usr/local/etc/php/conf.d/cgi.ini
-
-RUN mkdir /run/nginx
+RUN apk add --no-cache nginx=~1.24.0 \
+ && ln -sf /dev/stdout /var/log/nginx/access.log \
+ && ln -sf /dev/stderr /var/log/nginx/error.log \
+ && echo 'cgi.fix_pathinfo=0' > /usr/local/etc/php/conf.d/cgi.ini \
+ && mkdir /run/nginx \
 COPY wordpress.nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 
