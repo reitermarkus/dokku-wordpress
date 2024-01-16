@@ -12,9 +12,7 @@ RUN apk add --no-cache \
 RUN apk add --no-cache nginx~=1.24.0 \
  && ln -sf /dev/stdout /var/log/nginx/access.log \
  && ln -sf /dev/stderr /var/log/nginx/error.log \
- && echo 'cgi.fix_pathinfo=0' > /usr/local/etc/php/conf.d/cgi.ini \
- && sed -i -E "/^http \{$/i \\include modules/*.conf; \\" /etc/nginx/nginx.conf \
- && sed -i -E "/^http \{$/a \\    include conf.d/*.conf; \\" /etc/nginx/nginx.conf
+ && echo 'cgi.fix_pathinfo=0' > /usr/local/etc/php/conf.d/cgi.ini
 COPY wordpress.nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 
