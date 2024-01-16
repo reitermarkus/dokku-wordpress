@@ -1,6 +1,6 @@
-FROM wordpress:cli-php7.4 as cli
+FROM wordpress:cli-php8.3 as cli
 
-FROM wordpress:php7.4-fpm-alpine
+FROM wordpress:6.4.2-php8.3-fpm-alpine
 
 # install wp-cli dependencies
 RUN apk add --no-cache \
