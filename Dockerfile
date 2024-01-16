@@ -13,7 +13,7 @@ RUN apk add --no-cache nginx~=1.24.0 \
  && ln -sf /dev/stdout /var/log/nginx/access.log \
  && ln -sf /dev/stderr /var/log/nginx/error.log \
  && echo 'cgi.fix_pathinfo=0' > /usr/local/etc/php/conf.d/cgi.ini
-COPY wordpress.nginx.conf /etc/nginx/conf.d/default.conf
+COPY wordpress.nginx.conf /etc/nginx/http.d/default.conf
 EXPOSE 80
 
 COPY php-fpm+nginx /usr/local/bin/php-fpm+nginx
