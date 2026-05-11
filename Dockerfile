@@ -1,6 +1,6 @@
-FROM wordpress:cli-php8.3 as cli
+FROM docker.io/wordpress:cli-php8.3 AS cli
 
-FROM wordpress:6.4.2-php8.3-fpm-alpine
+FROM docker.io/wordpress:6.9.4-php8.3-fpm-alpine
 
 WORKDIR /usr/src/wordpress
 RUN cp -s wp-config-docker.php wp-config.php
@@ -8,11 +8,11 @@ RUN cp -s wp-config-docker.php wp-config.php
 # Install `wp-cli` and its dependencies.
 COPY --from=cli /usr/local/bin/wp /usr/local/bin/wp
 RUN apk add --no-cache \
-    less~=643 \
-    mysql-client~=10.11.5 \
+    less~=685 \
+    mysql-client~=11.4.10 \
  && wp --allow-root --version
 
-RUN apk add --no-cache nginx~=1.24.0 \
+RUN apk add --no-cache nginx~=1.28.3 \
  && ln -sf /dev/stdout /var/log/nginx/access.log \
  && ln -sf /dev/stderr /var/log/nginx/error.log \
  && echo 'cgi.fix_pathinfo=0' > /usr/local/etc/php/conf.d/cgi.ini
