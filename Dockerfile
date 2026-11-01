@@ -12,7 +12,7 @@ RUN apk add --no-cache \
     mysql-client~=11.8.9 \
  && wp --allow-root --version
 
-RUN apk add --no-cache nginx~=1.28.3 \
+RUN apk add --no-cache nginx~=1.30.6 \
  && ln -sf /dev/stdout /var/log/nginx/access.log \
  && ln -sf /dev/stderr /var/log/nginx/error.log \
  && echo 'cgi.fix_pathinfo=0' > /usr/local/etc/php/conf.d/cgi.ini
