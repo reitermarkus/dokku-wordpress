@@ -8,7 +8,7 @@ RUN cp -s wp-config-docker.php wp-config.php
 # Install `wp-cli` and its dependencies.
 COPY --from=cli /usr/local/bin/wp /usr/local/bin/wp
 RUN apk add --no-cache \
-    less~=685 \
+    less~=702 \
     mysql-client~=11.8.9 \
  && wp --allow-root --version
 
