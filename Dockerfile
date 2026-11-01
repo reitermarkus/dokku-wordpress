@@ -9,7 +9,7 @@ RUN cp -s wp-config-docker.php wp-config.php
 COPY --from=cli /usr/local/bin/wp /usr/local/bin/wp
 RUN apk add --no-cache \
     less~=685 \
-    mysql-client~=11.4.10 \
+    mysql-client~=11.8.9 \
  && wp --allow-root --version
 
 RUN apk add --no-cache nginx~=1.28.3 \
