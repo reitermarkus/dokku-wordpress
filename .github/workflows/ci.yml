@@ -4,4 +4,4 @@ name: CI
 
 jobs:
   ci:
-    uses: reitermarkus/.github/.github/workflows/docker-build-push.yml@main
+    uses: reitermarkus/.github/.github/workflows/docker-build-push.yml@0efb3be3a7df602b4021c917b353d3d6791688fd # main
