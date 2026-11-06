@@ -1,4 +1,4 @@
-FROM docker.io/wordpress:cli-php8.3@sha256:6bcc7bb91f5157c4b915e74ee131873e99c1c1ff48f602e4a6f6cd17827305cb AS cli
+FROM docker.io/wordpress:cli-php8.3@sha256:a4fff017eb08c03187e90fe52d4bff8d3a4d4a5103de05829a6e747c4ca3056e AS cli
 
 FROM docker.io/wordpress:7.1.4-php8.3-fpm-alpine@sha256:4ac04e3c975e7d8e2dbba5aac1a004559ffd0bfa777cb4d18e3c59ab1f57eca3
 
