@@ -1,6 +1,6 @@
 FROM docker.io/wordpress:cli-php8.3@sha256:a4fff017eb08c03187e90fe52d4bff8d3a4d4a5103de05829a6e747c4ca3056e AS cli
 
-FROM docker.io/wordpress:7.1.4-php8.3-fpm-alpine@sha256:cd4918485d21419a2bbedb5344336f6a5a6366a7a624a32f306cfb50568384ea
+FROM docker.io/wordpress:7.1.4-php8.3-fpm-alpine@sha256:3804342e4cf7d6763ad010fa1f2366f001898341b8747ced8c0c6e46b0635f02
 
 WORKDIR /usr/src/wordpress
 RUN cp -s wp-config-docker.php wp-config.php
